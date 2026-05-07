@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Virtus Acli Trecella - Società di Calcio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+    <style>
+        /* Reset e base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f5f9f8;
+            color: #1e3e2f; /* verde scuro più fresco */
+            line-height: 1.6;
+        }
+        header {
+            background: linear-gradient(90deg, #4caf50, #81c784);
+            color: white;
+            padding: 15px 30px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            z-index: 100;
+            font-weight: 600;
+            font-size: 1.25rem;
+            letter-spacing: 0.05em;
+        }
+        header .logo {
+            display: flex;
+            align-items: center;
+            cursor: default;
+            gap: 12px;
+            text-transform: uppercase;
+        }
+        header .logo svg {
+            width: 36px;
+            height: 36px;
+            fill: white;
+            filter: drop-shadow(0 0 3px rgba(255 255 255 / 0.7));
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 28px;
+            font-weight: 600;
+            transition: color 0.25s ease, transform 0.3s ease;
+            position: relative;
+            padding-bottom: 4px;
+        }
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            background: #dcedc8;
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s ease;
+            border-radius: 2px;
+        }
+        nav a:hover {
+            color: #dcedc8;
+        }
+        nav a:hover::after {
+            width: 100%;
+        }
+        main {
+            padding: 110px 25px 50px;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+        h1, h2 {
+            color: #2a5941;
+            font-weight: 700;
+            margin-bottom: 18px;
+            letter-spacing: 0.05em;
+        }
+        .hero {
+            background: linear-gradient(to right bottom, #3a9950, #8bc34a);
+            border-radius: 20px;
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(59, 121, 52, 0.5);
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 12px;
+            text-shadow: 2px 2px 5px #24622f;
+            letter-spacing: 0.1em;
+        }
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 28px;
+            font-weight: 500;
+            text-shadow: 1px 1px 4px #2b6a39;
+        }
+        .btn {
+            background-color: #dcedc8;
+            color: #2a5941;
+            padding: 14px 36px;
+            border: none;
+            border-radius: 40px;
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 1.15rem;
+            box-shadow: 0 6px 15px rgba(220, 237, 200, 0.7);
+            transition: background-color 0.3s, color 0.3s, transform 0.2s;
+            display: inline-block;
+            letter-spacing: 0.07em;
+        }
+        .btn:hover {
+            background-color: #c0d86f;
+            color: #1b3a1c;
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(170, 200, 90, 0.9);
+        }
+        section {
+            margin-top: 50px;
+            background: white;
+            border-radius: 16px;
+            padding: 30px 28px 32px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+        section:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+        }
+        .news article {
+            margin-bottom: 18px;
+        }
+        .news article h3 {
+            color: #4caf50;
+            margin-bottom: 7px;
+            font-weight: 600;
+        }
+        .instagram-feed {
+            margin-top: 25px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 14px;
+        }
+        .instagram-feed a img,
+        .instagram-feed img {
+            width: 100%;
+            border-radius: 12px;
+            border: 3px solid #a8d08d;
+            box-shadow: 0 3px 8px rgba(72, 130, 52, 0.3);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            object-fit: cover;
+            aspect-ratio: 1 / 1;
+        }
+        .instagram-feed a img:hover,
+        .instagram-feed img:hover {
+            transform: scale(1.1) rotate(3deg);
+            box-shadow: 0 6px 14px rgba(77, 144, 59, 0.7);
+            border-color: #76b636;
+        }
+        footer {
+            background: linear-gradient(90deg, #4caf50, #81c784);
+            color: white;
+            text-align: center;
+            padding: 22px 20px;
+            margin-top: 70px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            user-select: none;
+        }
+        @media(max-width: 600px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            header nav a {
+                margin-left: 14px;
+                font-size: 1rem;
+            }
+            main {
+                padding: 110px 16px 50px;
+            }
+            section {
+                padding: 24px 20px 26px;
+                margin-top: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo" aria-label="Logo Virtus Acli Trecella">
+        <!-- Trifoglio SVG stilizzato -->
+        <svg viewBox="0 0 64 64" aria-hidden="true">
+            <path d="M32 6s-10 10-10 18 9 16 10 16 10-7 10-16-10-18-10-18zM22 42s-2 10 6 14 8-2 8-2-6-14-14-12zM42 42s2 10-6 14-8-2-8-2 6-14 14-12z" />
+        </svg>
+        Virtus Acli Trecella
+    </div>
+    <nav>
+        <a href="#chi-siamo">Chi siamo</a>
+        <a href="#squadra">Squadra</a>
+        <a href="#multimedia">Multimedia</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contatti">Contatti</a>
+    </nav>
+</header>
+
+<main>
+    <section class="hero" aria-label="Benvenuto Virtus Acli Trecella">
+        <h1>Virtus Acli Trecella</h1>
+        <p>Fondata nel 2011 - Campionato di Terza Categoria</p>
+        <a class="btn" href="https://www.instagram.com/virtus_trecella2011/" target="_blank" rel="noopener noreferrer" aria-label="Segui il nostro Instagram">
+            Segui il nostro Instagram
+        </a>
+    </section>
+
+    <section id="chi-siamo" tabindex="0" aria-label="Chi siamo Virtus Acli Trecella">
+        <h2>Chi siamo</h2>
+        <p>Fondata nel 2011, la società Virtus Acli Trecella promuove la passione per il calcio dilettantistico con i suoi colori sociali bianco e verde e il simbolo del trifoglio.</p>
+        <p>Attualmente militiamo nel campionato di terza categoria, con una squadra determinata a crescere e divertirsi sul campo.</p>
+    </section>
+
+    <section id="squadra" tabindex="0" aria-label="La squadra Virtus Acli Trecella">
+        <h2>La Squadra</h2>
+        <p>Rosa giocatori e calendario gare saranno presto disponibili aggiornati per la stagione.</p>
+        <p>Seguici sui social per novità live e risultati.</p>
+    </section>
+
+    <section id="multimedia" tabindex="0" aria-label="Multimedia Virtus Acli Trecella">
+        <h2>Multimedia</h2>
+        <p>Guarda le nostre foto e video dagli allenamenti e le partite.</p>
+
+        <div class="instagram-feed" aria-label="Feed Instagram Virtus Acli Trecella">
+            <a href="https://www.instagram.com/p/C1/" target="_blank" rel="noopener noreferrer" aria-label="Foto gioco Virtus Acli Trecella 1">
+                <img src="https://via.placeholder.com/150?text=Foto1" alt="Foto gioco Virtus Acli Trecella 1">
+            </a>
+            <a href="https://www.instagram.com/p/C2/" target="_blank" rel="noopener noreferrer" aria-label="Foto gioco Virtus Acli Trecella 2">
+                <img src="https://via.placeholder.com/150?text=Foto2" alt="Foto gioco Virtus Acli Trecella 2">
+            </a>
+            <a href="https://www.instagram.com/p/C3/" target="_blank" rel="noopener noreferrer" aria-label="Foto allenamenti Virtus Acli Trecella 3">
+                <img src="https://via.placeholder.com/150?text=Foto3" alt="Foto allenamenti Virtus Acli Trecella 3">
+            </a>
+            <a href="https://www.instagram.com/p/C4/" target="_blank" rel="noopener noreferrer" aria-label="Foto partita Virtus Acli Trecella 4">
+                <img src="https://via.placeholder.com/150?text=Foto4" alt="Foto partita Virtus Acli Trecella 4">
+            </a>
+        </div>
+    </section>
+
+    <section id="gallery" tabindex="0" aria-label="Gallery Virtus Acli Trecella">
+        <h2>Gallery</h2>
+        <p>Momenti in campo: partite, formazioni e squadra.</p>
+
+        <div class="instagram-feed" aria-label="Gallery immagini Virtus Acli Trecella">
+            <a href="virtus 3.jpg" target="_blank" rel="noopener noreferrer" aria-label="Visualizza immagine partita">
+                <img src="virtus 3.jpg" alt="Due squadre schierate su campo da calcio artificiale in una giornata di sole" />
+            </a>
+            <a href="virtus 2.jpg" target="_blank" rel="noopener noreferrer" aria-label="Visualizza immagine ufficiali di gara">
+                <img src="virtus 2.jpg" alt="Giocatori e arbitri riuniti prima di una partita su campo sintetico" />
+            </a>
+            <a href="squadra virtus.jpg" target="_blank" rel="noopener noreferrer" aria-label="Visualizza immagine squadra in posa">
+                <img src="squadra virtus.jpg" alt="Foto di gruppo della squadra Virtus Acli Trecella con divise verdi" />
+            </a>
+        </div>
+    </section>
+
+    <section id="contatti" tabindex="0" aria-label="Contatti Virtus Acli Trecella">
+        <h2>Contatti</h2>
+        <p>Per informazioni e contatti, scrivici tramite Instagram o visita la nostra sede.</p>
+        <p><strong>Instagram:</strong> <a href="https://www.instagram.com/virtus_trecella2011/" target="_blank" rel="noopener noreferrer" aria-label="Instagram Virtus Acli Trecella">@virtus_trecella2011</a></p>
+        <p><strong>Indirizzo:</strong> Via Trecella, Località XYZ (inserire indirizzo reale)</p>
+    </section>
+</main>
+
+<footer>
+    &copy; 2024 Virtus Acli Trecella - Tutti i diritti riservati
+</footer>
+
+</body>
+</html>
+
